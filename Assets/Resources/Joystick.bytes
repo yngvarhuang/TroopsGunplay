@@ -1,0 +1,43 @@
+s6feb.xml|368|<component size="212,212" opaque="false" scroll="both" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="1"/>
+  <displayList>
+    <image id="n1" name="thumb" src="s6fe9" xy="17,26" pivot="0.5,0.5">
+      <gearDisplay controller="button" pages="1,3"/>
+    </image>
+  </displayList>
+  <Button mode="Radio"/>
+</component>s6fec.xml|494|<component size="300,300">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="1"/>
+  <displayList>
+    <graph id="n0" name="n0" xy="0,0" size="300,300" type="eclipse" lineColor="#00000000" fillColor="#80ff0000">
+      <gearLook controller="button" pages="0,1,2,3" values="1,0,1|1,0,0|-|-" default="1,0,0"/>
+    </graph>
+    <graph id="n1" name="n1" xy="44,44" size="212,212" type="eclipse" lineColor="#00000000" fillColor="#800000ff"/>
+  </displayList>
+</component>package.xml|438|<packageDescription id="y6vdzi5l" name="Joystick">
+  <resources>
+    <component id="s6feb" name="circle" size="212,212"/>
+    <image id="s6fe9" name="1" size="178,160"/>
+    <component id="s6fea" name="Main" exported="true" size="1136,640"/>
+    <image id="s6fe8" name="0" size="76,77"/>
+    <component id="s6fec" name="frame" size="300,300"/>
+    <atlas id="atlas0" size="256,256" file="atlas0.png"/>
+  </resources>
+</packageDescription>s6fea.xml|923|<component size="1136,640">
+  <displayList>
+    <image id="n7" name="joystick_center" src="s6fe8" xy="179,422">
+      <relation target="" sidePair="bottom-bottom"/>
+    </image>
+    <component id="n10" name="joystick_frame" src="s6fec" xy="64,310">
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <component id="n4" name="joystick" src="s6feb" xy="109,351">
+      <relation target="" sidePair="bottom-bottom"/>
+    </component>
+    <graph id="n2" name="joystick_touch" xy="29,330" size="374,254" type="rect" lineSize="0" fillColor="#00ffffff">
+      <relation target="" sidePair="bottom-bottom"/>
+    </graph>
+    <text id="n8" name="n8" xy="642,113" size="89,28" fontSize="24" color="#ffffff" strokeColor="#000000" text="Degree:"/>
+    <text id="n9" name="n9" xy="732,113" size="302,28" fontSize="24" color="#ffffff" autoSize="height" strokeColor="#000000" text=""/>
+  </displayList>
+</component>
