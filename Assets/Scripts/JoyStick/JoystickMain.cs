@@ -49,4 +49,8 @@ public class JoystickMain : MonoBehaviour
 			Application.Quit();
 		}
 	}
+
+	public float GetRotation() {
+		return _joystick.rotation;
+	}
 }

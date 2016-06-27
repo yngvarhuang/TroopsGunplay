@@ -30,6 +30,8 @@ public class JoystickModule : EventDispatcher
 	public int radius { get; set; }
     public int frame_radius { get; set; }
 
+	public float rotation { get; set; }
+
 	public JoystickModule(GComponent mainView)
 	{
 		onMove = new EventListener(this, "onMove");
@@ -110,6 +112,7 @@ public class JoystickModule : EventDispatcher
 			float deltaY = by - _InitY;
 			float degrees = Mathf.Atan2(deltaY, deltaX) * 180 / Mathf.PI;
 			_thumb.rotation = degrees + 90;
+			rotation = degrees;
 
 			Stage.inst.onTouchMove.Add(this.OnTouchMove);
 			Stage.inst.onTouchEnd.Add(this.OnTouchUp);
@@ -160,8 +163,9 @@ public class JoystickModule : EventDispatcher
             float rad = Mathf.Atan2(offsetY, offsetX);
             float degree = rad * 180 / Mathf.PI;
             _thumb.rotation = degree + 90;
+			rotation = degree;
 
-            bool is_over = false;
+			bool is_over = false;
             // 控制内摇杆不出范围
             float maxX = radius * Mathf.Cos(rad);
             float maxY = radius * Mathf.Sin(rad);
