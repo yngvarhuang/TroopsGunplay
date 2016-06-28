@@ -68,6 +68,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Camera\CameraMover.cs" />
+    <Compile Include="Assets\Scripts\Enum.cs" />
     <Compile Include="Assets\Scripts\JoyStick\JoystickMain.cs" />
     <Compile Include="Assets\Scripts\JoyStick\JoystickModule.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />

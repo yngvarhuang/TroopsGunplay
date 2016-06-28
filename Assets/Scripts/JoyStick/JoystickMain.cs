@@ -53,4 +53,12 @@ public class JoystickMain : MonoBehaviour
 	public float GetRotation() {
 		return _joystick.rotation;
 	}
+
+	public Vector3 GetTargetDirection() {
+		return _joystick.targetDir.normalized;
+	}
+
+	public Player.Locomotion GetLocomotion() {
+		return _joystick.locomotion;
+	}
 }

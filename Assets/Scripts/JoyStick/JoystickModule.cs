@@ -31,6 +31,8 @@ public class JoystickModule : EventDispatcher
     public int frame_radius { get; set; }
 
 	public float rotation { get; set; }
+	public Vector3 targetDir { get; set; }
+	public Player.Locomotion	locomotion { get; set; }
 
 	public JoystickModule(GComponent mainView)
 	{
@@ -55,8 +57,9 @@ public class JoystickModule : EventDispatcher
 		touchId = -1;
 		radius = 60;
         frame_radius = 106;
+		locomotion = Player.Locomotion.Idle;
 
-        can_frame_touch = true;
+		can_frame_touch = true;
         _touchArea.onTouchBegin.Add(this.onTouchDown);
 	}
 
@@ -113,6 +116,8 @@ public class JoystickModule : EventDispatcher
 			float degrees = Mathf.Atan2(deltaY, deltaX) * 180 / Mathf.PI;
 			_thumb.rotation = degrees + 90;
 			rotation = degrees;
+			targetDir = new Vector3(deltaY, 0, deltaX);
+			locomotion = Player.Locomotion.walk;
 
 			Stage.inst.onTouchMove.Add(this.OnTouchMove);
 			Stage.inst.onTouchEnd.Add(this.OnTouchUp);
@@ -138,6 +143,7 @@ public class JoystickModule : EventDispatcher
 				_center.y = _InitY - _center.height / 2;
 			}
 			);
+			locomotion = Player.Locomotion.Idle;
 
 			Stage.inst.onTouchMove.Remove(this.OnTouchMove);
 			Stage.inst.onTouchEnd.Remove(this.OnTouchUp);
@@ -164,6 +170,7 @@ public class JoystickModule : EventDispatcher
             float degree = rad * 180 / Mathf.PI;
             _thumb.rotation = degree + 90;
 			rotation = degree;
+			targetDir = new Vector3(offsetY, 0, offsetX);
 
 			bool is_over = false;
             // 控制内摇杆不出范围
@@ -179,7 +186,7 @@ public class JoystickModule : EventDispatcher
             }
             if (!is_over) {
                 can_frame_touch = true;
-            }
+			}
             // 控制外层变色
             is_over = false;
             maxX = frame_radius * Mathf.Cos(rad);
@@ -192,7 +199,7 @@ public class JoystickModule : EventDispatcher
             }
             if (can_frame_touch && is_over) {
                 this.SetFrameState(FrameState.Touch);
-            } else {
+			} else {
                 this.SetFrameState(FrameState.NotTouch);
             }
 
@@ -217,5 +224,13 @@ public class JoystickModule : EventDispatcher
     public void SetFrameState(FrameState state) 
     {
         _frame_ctrler.SetSelectedIndex((int)state);
+		switch(state) {
+			case FrameState.NotTouch:
+				locomotion = Player.Locomotion.walk;
+				break;
+			case FrameState.Touch:
+				locomotion = Player.Locomotion.run;
+				break;	
+		}
     }
 }

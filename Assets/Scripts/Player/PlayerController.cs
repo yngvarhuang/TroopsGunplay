@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour {
 	Transform		_transform;
 	public float	_turnSmoothing = 15f;
 	// 人物速度 实际0~10.5m/s
-	private float   _walkSpeed = 1.6f;
-    private float   _runSpeed = 5.3f;
+	private float   _walkSpeed = 2.2f;
+    private float   _runSpeed = 7f;
+	public  float	_speedDampTime = 0.2f;
 
-    public enum Locomotion
-    {
-		walk = 0,
-		run,
-    };
+  //  public enum Locomotion
+  //  {
+		//Idle = 0,
+		//walk,
+		//run,
+  //  };
 
     void Start () {
         _animator = GetComponent<Animator>();
@@ -31,15 +33,32 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		//Quaternion rotatio = ;
 		//rotatio.z = 50;
-		Debug.Log("rotation = "+ _joystick.GetRotation());
+		//Vector3 temp_vec = _joystick.GetTargetDirection();
+		//Debug.Log("rotation = " + temp_vec.x + " "+ temp_vec.y + " " + temp_vec.z);
+
 		Rigidbody r = GetComponent<Rigidbody>();
-		Vector3 targetDir = new Vector3(0, _joystick.GetRotation(), 0);
+		Vector3 targetDir = _joystick.GetTargetDirection();
 		Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-		Quaternion newRotation = Quaternion.Lerp(r.rotation, targetRotation,
-													_turnSmoothing * Time.deltaTime);
-		r.MoveRotation(newRotation);
+		transform.rotation = targetRotation;
+		//Quaternion newRotation = Quaternion.Lerp(r.rotation, targetRotation,
+		//											_turnSmoothing * Time.deltaTime);
+		//r.MoveRotation(newRotation);
+
 		//_transform.rotation = new Quaternion(0, _joystick.GetRotation(), 0, 0);
-		//_animator.SetFloat(_speedId, 6f, 0, Time.deltaTime);
+		Player.Locomotion locomotion = _joystick.GetLocomotion();
+		float speed = 0f;
+		switch(locomotion) {
+			case Player.Locomotion.Idle:
+				speed = 0;
+				break;
+			case Player.Locomotion.walk:
+				speed = _walkSpeed;
+				break;
+			case Player.Locomotion.run:
+				speed = _runSpeed;
+				break;
+		};
+		_animator.SetFloat(_speedId, speed, _speedDampTime, Time.deltaTime);
 
 		//AnimatorStateInfo animatorInfo = _animator.GetCurrentAnimatorStateInfo(0);
 		//if (animatorInfo.IsName("Run")) {
