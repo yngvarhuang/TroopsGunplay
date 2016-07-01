@@ -3,7 +3,7 @@ using FairyGUI;
 
 public class JoystickMain : MonoBehaviour
 {
-    bool is_show_text = true;
+    bool is_show_text = false;
 
     GComponent _mainView;
 	GTextField _text;

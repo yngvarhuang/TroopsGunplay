@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour {
 		_transform = GetComponent<Transform>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
 		//Quaternion rotatio = ;
 		//rotatio.z = 50;
 		//Vector3 temp_vec = _joystick.GetTargetDirection();

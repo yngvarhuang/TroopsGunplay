@@ -1,0 +1,64 @@
+hf2nv.xml|511|<component size="1136,640" opaque="false">
+  <displayList>
+    <component id="n4" name="b1" src="hf2nt" xy="720,500">
+      <relation target="n6" sidePair="left-left,bottom-bottom"/>
+    </component>
+    <component id="n5" name="b2" src="hf2nt" xy="850,500">
+      <relation target="n6" sidePair="left-left,bottom-bottom"/>
+    </component>
+    <component id="n6" name="b3" src="hf2nt" xy="980,500">
+      <relation target="" sidePair="right-right,bottom-bottom"/>
+    </component>
+  </displayList>
+</component>hf2nu.fnt|573|info creator=UIBuilder
+common lineHeight=0
+char id=48 img=hf2nb xoffset=0 yoffset=0 xadvance=35
+char id=49 img=hf2nc xoffset=0 yoffset=0 xadvance=35
+char id=50 img=hf2ni xoffset=0 yoffset=0 xadvance=35
+char id=51 img=hf2nj xoffset=0 yoffset=0 xadvance=35
+char id=52 img=hf2nk xoffset=0 yoffset=0 xadvance=35
+char id=53 img=hf2nl xoffset=0 yoffset=0 xadvance=35
+char id=54 img=hf2nm xoffset=0 yoffset=0 xadvance=35
+char id=55 img=hf2nn xoffset=0 yoffset=0 xadvance=35
+char id=56 img=hf2no xoffset=0 yoffset=0 xadvance=35
+char id=57 img=hf2np xoffset=0 yoffset=0 xadvance=35
+hf2nt.xml|806|<component size="100,100" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n5" name="n5" src="hf2nd" xy="-13,-13">
+      <gearDisplay controller="button" pages="1,3"/>
+    </image>
+    <image id="n6" name="n6" src="hf2nf" xy="-13,-13">
+      <gearDisplay controller="button" pages="1,3"/>
+    </image>
+    <loader id="n2" name="icon" xy="9,10" size="80,80" fill="scaleFree"/>
+    <image id="n0" name="btn" src="hf2ne" xy="9,9"/>
+    <text id="n3" name="title" xy="8,23" size="81,60" font="ui://xr6dvqwihf2nu" fontSize="24" align="center" autoSize="none" text="5"/>
+    <image id="n7" name="mask" src="hf2nr" xy="10,11" alpha="0.6" fillMethod="radial360" fillClockwise="false"/>
+  </displayList>
+  <Button/>
+</component>package.xml|1262|<packageDescription id="xr6dvqwi" name="RightView">
+  <resources>
+    <component id="hf2nt" name="Button2" size="100,100"/>
+    <image id="hf2n8" name="2" size="190,144" exported="true"/>
+    <image id="hf2nb" name="0(4).png" size="41,45"/>
+    <image id="hf2nd" name="11" size="127,127"/>
+    <image id="hf2nl" name="5(4).png" size="41,45"/>
+    <font id="hf2nu" name="cdtime" exported="true"/>
+    <image id="hf2n7" name="1" size="131,168" exported="true"/>
+    <image id="hf2nj" name="3(4).png" size="41,45"/>
+    <image id="hf2nm" name="6(4).png" size="41,45"/>
+    <image id="hf2n6" name="0" size="121,169" exported="true"/>
+    <atlas id="atlas0" size="512,512" file="atlas0.png"/>
+    <image id="hf2ne" name="12" size="82,82"/>
+    <image id="hf2no" name="8(4).png" size="41,45"/>
+    <component id="hf2nv" name="Main" exported="true" size="1136,640"/>
+    <image id="hf2np" name="9(4).png" size="41,45"/>
+    <image id="hf2nr" name="mask12" size="80,80"/>
+    <image id="hf2nf" name="132" size="127,127"/>
+    <image id="hf2ni" name="2(4).png" size="41,45"/>
+    <image id="hf2nc" name="1(4).png" size="41,45"/>
+    <image id="hf2nk" name="4(4).png" size="41,45"/>
+    <image id="hf2nn" name="7(4).png" size="41,45"/>
+  </resources>
+</packageDescription>
