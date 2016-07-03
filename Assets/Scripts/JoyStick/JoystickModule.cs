@@ -21,7 +21,6 @@ public class JoystickModule : EventDispatcher
 	GObject _thumb;
 	GObject _center;
     Controller _frame_ctrler;
-	int touchId;
 	Tweener _tweener;
 
 	public EventListener onMove { get; private set; }
@@ -33,6 +32,7 @@ public class JoystickModule : EventDispatcher
 	public float rotation { get; set; }
 	public Vector3 targetDir { get; set; }
 	public Player.Locomotion	locomotion { get; set; }
+	int touchId;
 
 	public JoystickModule(GComponent mainView)
 	{
@@ -233,4 +233,8 @@ public class JoystickModule : EventDispatcher
 				break;	
 		}
     }
+
+	public bool IsMove() {
+		return -1 != touchId;
+	}
 }

@@ -61,4 +61,8 @@ public class JoystickMain : MonoBehaviour
 	public Player.Locomotion GetLocomotion() {
 		return _joystick.locomotion;
 	}
+
+	public bool IsMove() {
+		return _joystick.IsMove();
+	}
 }

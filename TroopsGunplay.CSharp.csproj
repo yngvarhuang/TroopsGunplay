@@ -70,8 +70,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraMover.cs" />
     <Compile Include="Assets\Scripts\Enum.cs" />
+    <Compile Include="Assets\Scripts\HashIDs.cs" />
     <Compile Include="Assets\Scripts\JoyStick\JoystickMain.cs" />
     <Compile Include="Assets\Scripts\JoyStick\JoystickModule.cs" />
+    <Compile Include="Assets\Scripts\Player\AnimatorEvent.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\RightView\SkillViewMain.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />

@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
     private Animator _animator;
 
-    private int _speedId = 0;
+	HashIDs hash;
 
 	JoystickMain	_joystick;
 	Transform		_transform;
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start () {
         _animator = GetComponent<Animator>();
-		_speedId = Animator.StringToHash("Speed");
+		hash = GameObject.FindWithTag(Tags.GameController).GetComponent<HashIDs>();
 
 		GameObject UIPanel = GameObject.FindWithTag(Tags.UIPanel);
 		_joystick = UIPanel.GetComponent<JoystickMain>();
@@ -35,16 +35,17 @@ public class PlayerController : MonoBehaviour {
 		//rotatio.z = 50;
 		//Vector3 temp_vec = _joystick.GetTargetDirection();
 		//Debug.Log("rotation = " + temp_vec.x + " "+ temp_vec.y + " " + temp_vec.z);
+		if (_joystick.IsMove()) {
+			Rigidbody r = GetComponent<Rigidbody>();
+			Vector3 targetDir = _joystick.GetTargetDirection();
+			Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+			transform.rotation = targetRotation;
+			//Quaternion newRotation = Quaternion.Lerp(r.rotation, targetRotation,
+			//											_turnSmoothing * Time.deltaTime);
+			//r.MoveRotation(newRotation);
 
-		Rigidbody r = GetComponent<Rigidbody>();
-		Vector3 targetDir = _joystick.GetTargetDirection();
-		Quaternion targetRotation = Quaternion.LookRotation(targetDir, Vector3.up);
-		transform.rotation = targetRotation;
-		//Quaternion newRotation = Quaternion.Lerp(r.rotation, targetRotation,
-		//											_turnSmoothing * Time.deltaTime);
-		//r.MoveRotation(newRotation);
-
-		//_transform.rotation = new Quaternion(0, _joystick.GetRotation(), 0, 0);
+			//_transform.rotation = new Quaternion(0, _joystick.GetRotation(), 0, 0);
+		}
 		Player.Locomotion locomotion = _joystick.GetLocomotion();
 		float speed = 0f;
 		switch(locomotion) {
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour {
 				speed = _runSpeed;
 				break;
 		};
-		_animator.SetFloat(_speedId, speed, _speedDampTime, Time.deltaTime);
+		_animator.SetFloat(hash.SpeedFloat, speed, _speedDampTime, Time.deltaTime);
 
 		//AnimatorStateInfo animatorInfo = _animator.GetCurrentAnimatorStateInfo(0);
 		//if (animatorInfo.IsName("Run")) {
